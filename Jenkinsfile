@@ -13,14 +13,15 @@ pipeline {
     stages {
         stage ("clone") {
             steps {
-               sh "git clone 'https://github.com/HEMANT-111/loginwebapp.git"
+	       sh "sudo rm -rf /mnt/docker/*"
+               sh "sudo git clone 'https://github.com/HEMANT-111/loginwebapp.git"
             }
            }
            stage ("build") {
                steps {
 		dir ("/mnt/docker/loginwebapp"){
 		
-                  sh "mvn clean install"
+                  sh "sudo mvn clean install"
 	          	}
             } 
            }
@@ -35,7 +36,7 @@ pipeline {
            stage ("deploy") {
                steps {
                    dir ("/mnt/docker/loginwebapp")
-                   sh "docker cp LoginWebApp.war container333:/usr/local/tomcat/webapps"
+                   sh "sudo docker cp LoginWebApp.war container333:/usr/local/tomcat/webapps"
                }
            }
     }
