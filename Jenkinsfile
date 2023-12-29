@@ -14,7 +14,7 @@ pipeline {
         stage ("clone") {
             steps {
 	       sh "sudo rm -rf /mnt/docker/*"
-               sh "sudo git clone 'https://github.com/HEMANT-111/loginwebapp.git"
+               sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
             }
            }
            stage ("build") {
