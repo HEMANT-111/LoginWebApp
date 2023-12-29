@@ -36,9 +36,10 @@ pipeline {
 
            stage ("deploy") {
                steps {
-                   dir ("/mnt/docker/loginwebapp/target")
-                   sh "docker cp LoginWebApp.war container333:/usr/local/tomcat/webapps"
+                   dir ("/mnt/docker/loginwebapp/target") {
+                   sh "sudo docker cp LoginWebApp.war container333:/usr/local/tomcat/webapps"
                }
            }
+	   }
     }
 }
