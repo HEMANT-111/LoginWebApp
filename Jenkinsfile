@@ -10,9 +10,10 @@ pipeline {
         maven_home = "/mnt/maven/apache-maven-3.9.6"
         PATH = "$PATH:$maven_home/bin"
     }
-    stages {
-        stage ("clone") {
-            steps {
+   
+	stages {
+            stage ("clone") {
+                steps {
 	       sh "sudo rm -rf /mnt/docker/*"
                sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
             }
