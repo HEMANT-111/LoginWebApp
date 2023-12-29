@@ -28,15 +28,15 @@ pipeline {
            }
          stage ("containr-create") {
 		 steps {
-        /*sh "sudo docker kill container333"
-        sh "sudo docker rm container333"*/
+        sh "sudo docker kill container333"
+        sh "sudo docker rm container333"
         sh "sudo docker run --name container333 -itdp 8888:8080 tomcat:latest"
 		 }
 	 }
 
            stage ("deploy") {
                steps {
-                   dir ("/mnt/docker/loginwebapp")
+                   dir ("/mnt/docker/loginwebapp/target")
                    sh "sudo docker cp LoginWebApp.war container333:/usr/local/tomcat/webapps"
                }
            }
