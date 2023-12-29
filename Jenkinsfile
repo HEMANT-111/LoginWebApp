@@ -1,28 +1,38 @@
 pipeline {
     agent {
         label{
-            label "built-in"
-            customWorkspace "/mnt/hsk"
+            label "dev-H"
+            customWorkspace "/mnt/docker"
             
         }
     }
-    tools {
-        maven "MAVEN_HOME"
+    environment {
+        maven_home = "/mnt/maven/apache-maven-3.9.6"
+        PATH = "$PATH:$maven_home/bin"
     }
     stages {
         stage ("clone") {
             steps {
-               git credentialsId: 'git', url: 'https://github.com/HEMANT-111/loginwebapp.git'
+               sh "git clone 'https://github.com/HEMANT-111/loginwebapp.git"
             }
            }
            stage ("build") {
                steps {
-                   sh "mvn clean install"
-               }
+		dir ("/mnt/docker/loginwebapp"){
+		
+                  sh "mvn clean install"
+	          	}
+            } 
            }
+         stage ("containr-create")
+        /*sh "sudo docker kill container333"
+        sh "sudo docker rm container333"*/
+        sh "sudo docker run --name container333 -itdp 8888:8080 tomcat:latest"
+
            stage ("deploy") {
                steps {
-                   sh "cp ./target/*.war /mnt/tom/apache-tomcat-9.0.83/webapps "
+                   dir ("/mnt/docker/loginwebapp")
+                   sh "docker cp LoginWebApp.war container333:/usr/local/tomcat/webapps"
                }
            }
     }
