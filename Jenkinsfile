@@ -33,6 +33,7 @@ pipeline {
 	sh "sudo docker kill container333"
 	sh "sudo docker rm container333"			 
         sh "sudo docker run --name container333 -itdp 8487:8080 mytomcat"
+	sh "sudo docker run --name container334 -itdp 8484:8080 mytomcat"			 
 		 }
 		 }
 	 }
