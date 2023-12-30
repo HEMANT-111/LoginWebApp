@@ -1,7 +1,7 @@
 pipeline {
     agent {
         label{
-            label "dev"
+            label "built-in"
             customWorkspace "/mnt/docker"
             
         }
@@ -26,12 +26,12 @@ pipeline {
 	          	}
             } 
            }
-         stage ("containr-create") {
+         stage ("ssh") {
 		 steps {
 			 dir ("/mnt/docker/loginwebapp") {
-        sh "sudo docker build -t mytomcat ."
-	sh "sudo docker kill container333 container334"
-	sh "sudo docker rm container333 container334"			 
+        sh "scp -i '/mnt/linuxkp1.pem *.war ec2-user@172.31.2.242:/mnt"
+	sh "scp -i '/mnt/linuxkp1.pem Dockerfile ec2-user@172.31.2.242:/mnt"
+				 
         			 
 		 }
 		 }
