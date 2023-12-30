@@ -36,7 +36,7 @@ pipeline {
 		stage ("deploy") {
 			steps {
 				dir ("/mnt/docker/loginwebapp") {
-	sh "scp -i '/mnt/linuxkp1.pem Dockerfile ec2-user@172.31.2.242:/mnt"
+	sh "scp -i '/mnt/linuxkp1.pem' Dockerfile ec2-user@172.31.2.242:/mnt"
 				}
         			 
 		 }
