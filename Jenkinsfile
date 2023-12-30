@@ -42,11 +42,13 @@ pipeline {
 		 }
 		 }*/
 		stage ("image-container") {
+			steps {
 			agent {
 				node {
 					label "dev"
 					customWorkspace "/mnt"
 				}
+			}
 			}
 			stage ("img-contair") {
 				steps {
