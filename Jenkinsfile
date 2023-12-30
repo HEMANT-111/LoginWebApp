@@ -42,7 +42,7 @@ pipeline {
 		 }
 		 }*/
 		stage ("image-container") {
-			steps {
+			
 			agent {
 				node {
 					label "dev"
@@ -50,7 +50,7 @@ pipeline {
 				}
 			}
 			}
-		}
+		
 			stage ("img-contair") {
 				steps {
 					sh "sudo  docker build -t mytomcat ."
