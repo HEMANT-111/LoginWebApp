@@ -28,9 +28,9 @@ pipeline {
            }
          stage ("ssh") {
 		 steps {
-			 dir ("/mnt/docker/loginwebapp") {
-        sh "scp -i '/mnt/linuxkp1.pem' /target/*.war ec2-user@172.31.2.242:/mnt"
-	sh "scp -i '/mnt/linuxkp1.pem Dockerfile ec2-user@172.31.2.242:/mnt"
+			 dir ("/mnt/docker/loginwebapp/target") {
+        sh "scp -i '/mnt/linuxkp1.pem' *.war ec2-user@172.31.2.242:/mnt"
+	sh "scp -i '/mnt/linuxkp1.pem /mnt/docker/loginwebapp/Dockerfile ec2-user@172.31.2.242:/mnt"
 				 
         			 
 		 }
