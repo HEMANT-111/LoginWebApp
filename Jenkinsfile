@@ -52,6 +52,8 @@ pipeline {
 				steps {
 					sh "sudo  docker build -t mytomcat ."
 					sh "sudo docker run --name container333 -itdp 8484:8080 mytomcat"
+				}
+			}
 	
 	 
 
