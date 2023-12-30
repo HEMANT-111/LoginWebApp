@@ -50,6 +50,7 @@ pipeline {
 				}
 			}
 			}
+		}
 			stage ("img-contair") {
 				steps {
 					sh "sudo  docker build -t mytomcat ."
