@@ -32,7 +32,7 @@ pipeline {
         sh "scp -i '/mnt/linuxkp1.pem' *.war ec2-user@172.31.2.242:/mnt"
 			 }
 		 }
-	 }*/
+	 }
 		stage ("deploy") {
 			steps {
 				dir ("/mnt/docker/loginwebapp") {
@@ -40,7 +40,18 @@ pipeline {
 				}
         			 
 		 }
-		 }
+		 }*/
+		stage ("image-container") {
+			agent {
+				node {
+					label "dev"
+					customWorkspace "/mnt"
+				}
+			}
+			stage ("img-contair") {
+				steps {
+					sh "sudo  docker build -t mytomcat ."
+					sh "sudo docker run --name container333 -itdp 8484:8080 mytomcat"
 	
 	 
 
