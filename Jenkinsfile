@@ -12,7 +12,7 @@ pipeline {
     }
    
 	stages {
-           /* stage ("clone") {
+           stage ("clone") {
                 steps {
 	       sh "sudo rm -rf /mnt/docker/*"
                sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
@@ -26,7 +26,7 @@ pipeline {
 	          	}
             } 
            }
-         stage ("ssh") {
+        /* stage ("ssh") {
 		 steps {
 			 dir ("/mnt/docker/loginwebapp/target") {
         sh "scp -i '/mnt/linuxkp1.pem' *.war ec2-user@172.31.2.242:/mnt"
