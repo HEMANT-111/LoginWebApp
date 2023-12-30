@@ -42,7 +42,7 @@ pipeline {
 		 }
 		 }*/
 		
-		stage ("image-container") {
+		 stage ("image-container") {
 			
 			agent {
 				node {
@@ -50,13 +50,13 @@ pipeline {
 					customWorkspace "/mnt"
 				}
 			}
-			}
+			
 		
 			steps  {
 				
 					sh "sudo  docker build -t mytomcat ."
 					sh "sudo docker run --name container333 -itdp 8484:8080 mytomcat"
-				
+			}
 			}
 	
 	 
