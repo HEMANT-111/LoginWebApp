@@ -36,20 +36,20 @@ pipeline {
 		stage ('copy app slave-1'){
 			
 			steps {
-				dir ("/mnt/compose/file1") {
 				
-				sh "cp /mnt/kkk/loginwebapp/target/LoginWebApp.war /mnt/compose/file-1"
-				sh "cp /mnt/kkk/loginwebapp/Dockerfile /mnt/compose/file-1"
-				sh "cp /mnt/kkk/loginwebapp/Docker-compose.yml /mnt/compose/file-1"
 				
-				}
+				sh "cp /mnt/kkk/loginwebapp/target/LoginWebApp.war /mnt/compose/file1"
+				sh "cp /mnt/kkk/loginwebapp/Dockerfile /mnt/compose/file1"
+				sh "cp /mnt/kkk/loginwebapp/Docker-compose.yml /mnt/compose/file1"
+				
+				
 			}
 		}
 		
 		
 		stage ('docker-compose'){
 			steps {
-				dir ("/mnt/compose/file-1") {
+				dir ("/mnt/compose/file1") {
 				sh "docker-compose up -d"	
 				}
 			}
