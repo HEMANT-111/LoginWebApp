@@ -35,7 +35,8 @@ pipeline {
 	 }
 		stage ("compose") {
 			steps {
-				sh "sudo docker-compose up -d"
+				dir ("/mnt/compose/loginwebapp")
+				sh "docker-compose up -d"
 			}
 		}
 			
