@@ -1,7 +1,7 @@
 pipeline {
 	agent {
 		node {
-			label "built"
+			label "built-in"
 			customWorkspace "/mnt/kkk"
 		}
 	}
