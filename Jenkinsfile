@@ -40,7 +40,7 @@ pipeline {
 				
 				sh "cp /mnt/kkk/loginwebapp/target/LoginWebApp.war /mnt/compose/file1"
 				sh "cp /mnt/kkk/loginwebapp/Dockerfile /mnt/compose/file1"
-				sh "cp /mnt/kkk/loginwebapp/Docker-compose.yml /mnt/compose/file1"
+				sh "cp /mnt/kkk/loginwebapp/docker-compose.yml /mnt/compose/file1"
 				
 				
 			}
