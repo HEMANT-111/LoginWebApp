@@ -38,7 +38,7 @@ pipeline {
 			steps {
 				dir ("/mnt/compose") {
 				sh "mkdir file1"
-				sh "cp /mnt/kkk/loginwebapp/target/LoginWenApp.war /mnt/compose/file-1"
+				sh "cp /mnt/kkk/loginwebapp/target/LoginWebApp.war /mnt/compose/file-1"
 				sh "cp /mnt/kkk/loginwebapp/Dockerfile /mnt/compose/file-1"
 				sh "cp /mnt/kkk/loginwebapp/Docker-compose.yml /mnt/compose/file-1"
 				
