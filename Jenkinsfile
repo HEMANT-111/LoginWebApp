@@ -7,7 +7,7 @@ pipeline {
 	}
 	
 	stages {
-		stage ('clone repo') {
+		/*stage ('clone repo') {
 			steps {
 			    sh "rm -rf /mnt/kkk/*"
 				sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
@@ -44,13 +44,14 @@ pipeline {
 				
 				
 			}
-		}
+		}*/
 		
 		
 		stage ('docker-compose'){
 			steps {
 				dir ("/mnt/compose/file1") {
-				sh "docker-compose up -d"	
+				sh "docker-compose up -d"
+				sh "docker-compose down -d"	
 				}
 			}
 		}
