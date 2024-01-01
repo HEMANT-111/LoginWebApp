@@ -1,44 +1,57 @@
 pipeline {
-    agent {
-        label{
-            label "built-in"
-            customWorkspace "/mnt/compose"
-            
-        }
-    }
-    environment {
-        maven_home = "/mnt/maven/apache-maven-3.9.6"
-        PATH = "$PATH:$maven_home/bin"
-    }
-   
+	agent {
+		node {
+			label "built"
+			customWorkspace "/mnt/kkk"
+		}
+	}
+	
 	stages {
-           stage ("clone") {
-                steps {
-	       sh "sudo rm -rf /mnt/compose/*"
-               sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
-            }
-           }
-           stage ("build") {
-               steps {
-		dir ("/mnt/compose/loginwebapp"){
-		
-                  sh "mvn clean install"
-	          	}
-            } 
-           }
-        stage ("war-file") {
-		 steps {
-			 dir ("/mnt/compose/loginwebapp/target") {
-              sh "cp *.war /mnt/compose/loginwebapp"
-			 }
-		 }
-	 }
-		stage ("compose") {
+		stage ('clone repo') {
 			steps {
-				dir ("/mnt/compose")
-				sh "docker-compose up -d"
+			    sh "rm -rf game-of-life*"
+				sh "git clone https://github.com/Abhay-Dubal/game-of-life.git"
 			}
 		}
+		
+		stage ('create build') {
+			steps {
+			dir ('/mnt/kkk/loginwebapp') {
+			    
+			    sh "mvn clean install"
+			    	
 			
+			}
+			}
+		}
+		stage ("chmod") {
+			steps {
+				dir ("/mnt/kkk/loginwebapp//target") {
+					sh "chmod -R 777 LoginWebApp.war"
+				}
+			}
+		}
+		
+		
+		stage ('copy app slave-1'){
+			
+			steps {
+				dir ("/mnt/compose")
+				sh "mkdir file1"
+				sh "cp /mnt/kkk/loginwebapp/target/LoginWenApp.war /mnt/compose/file-1"
+				sh "cp /mnt/kkk/loginwebapp/Dockerfile /mnt/compose/file-1"
+				sh "cp /mnt/kkk/loginwebapp/Docker-compose.yml /mnt/compose/file-1"
+				
+			
+			}
+		}
+		
+		stage ('deploy app using docker compose slave-1'){
+			steps {
+				dir ("/mnt/compose") {
+				sh "sudo docker-compose up -d"	
+				}
+			}
+		}
 	}
-}		
+}
