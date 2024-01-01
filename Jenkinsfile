@@ -35,7 +35,7 @@ pipeline {
 	 }
 		stage ("compose") {
 			steps {
-				dir ("/mnt/compose/loginwebapp")
+				dir ("/mnt/compose")
 				sh "docker-compose up -d"
 			}
 		}
