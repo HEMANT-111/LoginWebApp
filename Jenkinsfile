@@ -50,8 +50,8 @@ pipeline {
 		stage ('docker-compose'){
 			steps {
 				dir ("/mnt/compose/file1") {
-				sh "docker-compose up -d"
-				sh "docker-compose down"	
+				sh "docker-compose up -d --scale myservice=5"
+				/*sh "docker-compose down"*/	
 				}
 			}
 		}
