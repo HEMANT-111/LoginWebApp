@@ -10,7 +10,7 @@ pipeline {
 		stage ('clone repo') {
 			steps {
 			    sh "rm -rf game-of-life*"
-				sh "git clone https://github.com/Abhay-Dubal/game-of-life.git"
+				sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
 			}
 		}
 		
