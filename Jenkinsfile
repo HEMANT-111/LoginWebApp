@@ -9,7 +9,7 @@ pipeline {
 	stages {
 		stage ('clone repo') {
 			steps {
-			    sh "rm -rf game-of-life*"
+			    sh "rm -rf /mnt/kkk/*"
 				sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
 			}
 		}
