@@ -28,7 +28,7 @@ pipeline {
            }
         stage ("war-file") {
 		 steps {
-			 dir ("/mnt/docker/loginwebapp/target") {
+			 dir ("/mnt/compose/loginwebapp/target") {
               sh "cp *.war /mnt/compose/loginwebapp"
 			 }
 		 }
