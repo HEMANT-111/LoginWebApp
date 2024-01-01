@@ -49,7 +49,7 @@ pipeline {
 		
 		stage ('docker-compose'){
 			steps {
-				dir ("/mnt/compose") {
+				dir ("/mnt/compose/file1") {
 				sh "docker-compose up -d"	
 				}
 			}
