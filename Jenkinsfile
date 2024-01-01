@@ -26,12 +26,18 @@ pipeline {
 	          	}
             } 
            }
-        stage ("ssh") {
+        stage ("war-file") {
 		 steps {
 			 dir ("/mnt/docker/loginwebapp/target") {
-              sh "cp *.war /mnt/docker/loginwebapp"
+              sh "cp *.war /mnt/compose/loginwebapp"
 			 }
 		 }
 	 }
+		stage ("compose") {
+			steps {
+				sh "sudo docker-compose up -d"
+			}
+		}
+			
 	}
 }		
