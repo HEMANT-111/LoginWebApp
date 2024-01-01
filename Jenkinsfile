@@ -51,7 +51,7 @@ pipeline {
 			steps {
 				dir ("/mnt/compose/file1") {
 				sh "docker-compose up -d"
-				sh "docker-compose down -d"	
+				sh "docker-compose down"	
 				}
 			}
 		}
