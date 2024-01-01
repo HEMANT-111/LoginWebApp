@@ -2,7 +2,7 @@ pipeline {
     agent {
         label{
             label "built-in"
-            customWorkspace "/mnt/docker"
+            customWorkspace "/mnt/compose"
             
         }
     }
@@ -14,54 +14,24 @@ pipeline {
 	stages {
            stage ("clone") {
                 steps {
-	       sh "sudo rm -rf /mnt/docker/*"
+	       sh "sudo rm -rf /mnt/compose/*"
                sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
             }
            }
            stage ("build") {
                steps {
-		dir ("/mnt/docker/loginwebapp"){
+		dir ("/mnt/compose/loginwebapp"){
 		
                   sh "mvn clean install"
 	          	}
             } 
            }
-        /* stage ("ssh") {
+        stage ("ssh") {
 		 steps {
 			 dir ("/mnt/docker/loginwebapp/target") {
-        sh "scp -i '/mnt/linuxkp1.pem' *.war ec2-user@172.31.2.242:/mnt"
+              sh "cp *.war /mnt/docker/loginwebapp"
 			 }
 		 }
 	 }
-		stage ("deploy") {
-			steps {
-				dir ("/mnt/docker/loginwebapp") {
-	sh "scp -i '/mnt/linuxkp1.pem' Dockerfile ec2-user@172.31.2.242:/mnt"
-				}
-        			 
-		 }
-		 }*/
-		
-		 stage ("image-container") {
-			
-			agent {
-				node {
-					label "dev"
-					customWorkspace "/mnt"
-				}
-			}
-			
-		
-			steps  {
-				
-					sh "sudo  docker build -t mytomcat ."
-					sh "sudo docker run --name container333 -itdp 8484:8080 mytomcat"
-			}
-			}
-	
-	 
-
-          
-    }
-}
-
+	}
+}		
