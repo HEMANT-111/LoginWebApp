@@ -45,7 +45,7 @@ pipeline {
 		stage ('container'){
 			steps {
 				sh "docker run --name don1 -it -d -p 8455:8080 /mnt/kkk/loginwebapp"
-" 
+
 				}
 			}
 		}
