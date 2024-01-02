@@ -45,7 +45,9 @@ pipeline {
 		stage ('container'){
 			steps {
 				dir ("/mnt/kkk/loginwebapp") {
-				sh "docker run --name don1 -itdp 8888:8080 ."
+				sh "docker build -t don1 ."
+                                sh "docker run --name doncont -itdp 8888:8080 don1"
+
 
 				}
 			}
