@@ -7,9 +7,9 @@ pipeline {
 	}
 	
 	stages {
-		/*stage ('clone repo') {
+		stage ('clone repo') {
 			steps {
-			    sh "rm -rf /mnt/kkk/*"
+		        /* sh "rm -rf /mnt/kkk/*"    */
 				sh "git clone https://github.com/HEMANT-111/loginwebapp.git"
 			}
 		}
@@ -26,32 +26,25 @@ pipeline {
 		}
 		stage ("chmod") {
 			steps {
-				dir ("/mnt/kkk/loginwebapp//target") {
+				dir ("/mnt/kkk/loginwebapp/target") {
 					sh "chmod -R 777 LoginWebApp.war"
 				}
 			}
 		}
 		
 		
-		stage ('copy app slave-1'){
+		stage ('copy-to-cont'){
 			
 			steps {
 				
-				sh "rm -rf /mnt/compose/file1/*"
-				sh "cp /mnt/kkk/loginwebapp/target/LoginWebApp.war /mnt/compose/file1"
-				sh "cp /mnt/kkk/loginwebapp/Dockerfile /mnt/compose/file1"
-				sh "cp /mnt/kkk/loginwebapp/docker-compose.yml /mnt/compose/file1"
-				
-				
-			}
-		}*/
+				sh "cp /mnt/kkk/loginwebapp/target/*.war /mnt/kkk/loginwebapp"
+				}
+		}
 		
 		
-		stage ('docker-compose'){
+		stage ('container'){
 			steps {
-				dir ("/mnt/compose/file1") {
-				sh "docker-compose up -d --scale myservice=5"
-				/*sh "docker-compose down"*/	
+				sh "docker run --name don1 -itdp 8484:8080 /mnt/kkk/loginwebapp" 
 				}
 			}
 		}
