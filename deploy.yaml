@@ -1,23 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy
-  namespace: webapps
+  name: my-app-deployment                                 # Adjust the deployment name as needed
+  labels:
+    app: my-app                                                   # Adjust the app label as needed
 spec:
-  replicas: 2
+  replicas: 3                                                # Adjust the number of replicas as needed
   selector:
     matchLabels:
-      app: hsk-label
+      app: my-app
+  strategy:
+    type: Recreate                                                    # This line enables the "recreate" strategy
   template:
     metadata:
       labels:
-        app: hsk-label
+        app: my-app
     spec:
       containers:
-      - name: container
-        image: httpd
-        ports:
-        - containerPort: 80
+        - name: my-app-container
+          image: registry.hub.docker.com/hemant1111/loginwebapp:1  # Your image path
+          ports:
+            - containerPort: 8888
 ---
 apiVersion: v1
 kind: Service
