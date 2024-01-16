@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: my-app-container
-          image: registry.hub.docker.com/hemant1111/loginwebapp:1  # Your image path
+          image: hemant1111/loginwebapp:1  # Your image path
           ports:
             - containerPort: 8888
 ---
