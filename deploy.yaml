@@ -1,37 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment                                 # Adjust the deployment name as needed
-  labels:
-    app: my-app                                                   # Adjust the app label as needed
+  name: my-deploy
 spec:
-  replicas: 3                                                # Adjust the number of replicas as needed
+  replicas: 3
   selector:
     matchLabels:
-      app: my-app
-  strategy:
-    type: Recreate                                                    # This line enables the "recreate" strategy
+      app: my-appp
   template:
     metadata:
       labels:
-        app: my-app
+        app: my-appp
     spec:
       containers:
-        - name: my-app-container
-          image: hemant1111/loginwebapp:1  # Your image path
-          ports:
-            - containerPort: 8888
+      - name: my-container
+        image: hemant1111/loginwebapp:1
+        ports:
+        - containerPort: 9000
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: newsvc
-  namespace: webapps
+  name: my-servicee
 spec:
-  selector:
-    app: hsk-label
-  ports:
-  - port: 8888
-    targetPort: 8888
-    nodePort: 30001
   type: NodePort
+  selector:
+    app: my-appp
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
