@@ -31,3 +31,4 @@ spec:
     - protocol: TCP
       port: 9000
       targetPort: 9000
+      nodePort: 3333
